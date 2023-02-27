@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  multiset-database:
+    image: postgres:14.5
+    container_name: multiset-database
+    labels:
+      service_docker: "multiset-database"
+    ports:
+      - '5430:5432'
+    environment:
+      - POSTGRES_USER=${DATABASE_USERNAME}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB=${DATABASE_NAME}
+    restart: unless-stopped
+
+volumes:
+  db:
+    driver: local
